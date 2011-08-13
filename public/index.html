@@ -9,30 +9,33 @@
         <script type="text/javascript" src="js/jquery-1.6.2.js"></script>
         <script type="text/javascript">
           $(document).bind("mobileinit", function(){
-          //apply overrides here
+            $.extend(  $.mobile , {
+              addBackBtn: true
+            });
           });
         </script>
 	<script type="text/javascript" src="js/jquery.mobile-1.0b3pre.js"></script>
 </head>
 <body> 
-	<section id="page1">
-		<header><h1>jQuery Mobile</h1></header> 
-		<section class="content"> 
-			<p>First page!</p> 
-                        <a href="#page2">Multi-page link</a>
-                </div> 
-                 
-		<footer>
-			<h1>O'Reilly</h1>
+	<section id="home" data-role="page">
+		<header data-role="header"><h1>Mobile Log - Home</h1></header> 
+		<div data-role="content"> 
+			<p>Home Page</p> 
+                        <a href="#log">View log</a>
+                </div>
+		<footer data-role="footer">
+			<h1>Copyright (c) 2011 Kurt Harriger. All Rights Reserved.</h1>
 		</footer> 
 	</section>
-	<section id="page2">
-		<header><h1>jQuery Mobile</h1></header> 
-		<div class="content"> 
-			<p>First page!</p> </div> 
-		<footer>
-			<h1>O'Reilly</h1>
-		</footer> 
+	<section id="log" data-role="page">
+		<header data-role="header">
+                  <h1>Mobile Log - View Log</h1>
+                  <a data-rel="back" href="#home">Home</a>
+                </header> 
+		<div data-role="content"> 
+			<p>Log page!</p> 
+                </div> 
+
 	</section>
 
 </body>
