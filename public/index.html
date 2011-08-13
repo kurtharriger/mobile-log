@@ -20,6 +20,10 @@
     white-space: nowrap; 
     position: relative; 
 }
+footer {
+   position:absolute; 
+   bottom: 0; left:0;
+}
 
         </style>
         <script type="text/javascript" src="js/jquery-1.6.2.js"></script>
@@ -30,14 +34,14 @@
             });
 
           });
-          $('div.ui-page').live("swipeleft", function(){
+          $('#home').live("swipeleft", function(){
 		var nextpage = $(this).next('div[data-role="page"]');
 		// swipe using id of next page if exists
 		if (nextpage.length > 0) {
 			$.mobile.changePage(nextpage, 'slide');
 		}
 	});
-	$('div.ui-page').live("swiperight", function(){
+	$('#log').live("swiperight", function(){
 		var prevpage = $(this).prev('div[data-role="page"]');
 		// swipe using id of next page if exists
 		if (prevpage.length > 0) {
@@ -84,36 +88,39 @@
           }
          
         </script>
-	<script type="text/javascript" src="js/jquery.mobile-1.0b3pre.js"></script>
-</head>
-<body> 
-	<section id="home" data-role="page" data-theme="a">
-		<header data-role="header" data-position="fixed">
-                  <h1>Mobile Log</h1>
-                  <a href="index.html"  class="ui-btn-right clear-button" >Clear</a> 
-                </header> 
-		<div data-role="content"> 
-                       <div> 
-                        <div class="record-button">
-                          <button  >Tap to record</button>
-                        </div>
-                         <ul class="log" data-role="listview" data-inset="true">
-                         </ul>
-                </div>
-		<footer data-role="footer" data-position="fixed">
-			<h4>Copyright (c) 2011 Kurt Harriger. All Rights Reserved.</h4>
-		</footer> 
-	</section>
-	<section id="log" data-role="page">
-		<header data-role="header">
-                  <h1>Mobile Log - View Log</h1>
-                  <a data-rel="back" href="#home">Home</a>
-                </header> 
-		<div data-role="content"> 
-			<p>Log page!</p> 
-                </div> 
+	<script type="text/javascript"
+	src="js/jquery.mobile-1.0b3pre.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile.iscroll.js"></script>
+        </head>
+        <body> 
+	  <section id="home" data-role="page" data-theme="a"
+                   data-fullscreen="true" data-iscroll="enable">
+	    <header data-role="header" >
+              <h1>Mobile Log</h1>
+              <a href="index.html"  class="ui-btn-right clear-button" >Clear</a> 
+            </header> 
+	    <div data-role="content"> 
+              <div class="record-button">
+                <button  >Tap to record</button> 
+              </div>
+              <ul class="log" data-role="listview" data-inset="true">
+              </ul>
+            </div>
+            <div class="copyright" data-role="footer">
+	      <p>Copyright (c) 2011 Kurt Harriger. All Rights Reserved.</p>
+	    <p> 
+            </div>
+	  </section>
+	  <section id="log" data-role="page">
+	    <header data-role="header">
+              <h1>Mobile Log - View Log</h1>
+              <a data-rel="back" href="#home">Home</a>
+            </header> 
+	    <div data-role="content"> 
+	      <p>Log page!</p> 
+            </div> 
 
-	</section>
+	  </section>
 
-</body>
+        </body>
 </html>
