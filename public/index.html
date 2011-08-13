@@ -6,27 +6,79 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
 	<link rel="stylesheet" href="css/jquery.mobile-1.0b3pre.css"/>
+        <style rel="stylesheet"  type="text/css">
+           #home  div {
+            text-align: center;
+           }
+
+.record-button .ui-btn-inner { 
+    padding: 2em; 
+    display: block; 
+    height: 100%; 
+    text-overflow: ellipsis; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    position: relative; 
+}
+
+        </style>
         <script type="text/javascript" src="js/jquery-1.6.2.js"></script>
         <script type="text/javascript">
           $(document).bind("mobileinit", function(){
             $.extend(  $.mobile , {
               addBackBtn: true
             });
+
           });
+
+  
+          function savePosition(position) {
+//               var val = position.coords.latitude + ", " + position.coords.longitude;
+               val = "";
+               localStorage.setItem(new Date(), val);
+               updateListView();            
+          }
+          
+
+          $("#home").live('pagebeforecreate', function() {
+             $('.record-button').click(function(event){
+          //      navigator.geolocation.getCurrentPosition(savePosition, saveTimeOnly);
+                savePosition();
+  
+
+             });
+          });
+          function updateListView() {
+             var log = $("ul.log");
+             log.empty();
+          
+             for(key in localStorage) {
+               log.append("<li>"+new Date(key)+"</li>");
+             }
+          }
+         
         </script>
 	<script type="text/javascript" src="js/jquery.mobile-1.0b3pre.js"></script>
 </head>
 <body> 
-	<section id="home" data-role="page" data-theme="a" >
-		<header data-role="header"><h1>Mobile Log - Home</h1></header> 
+	<section id="home" data-role="page" data-theme="a">
+		<header data-role="header" data-position="fixed">
+                  <h1>Mobile Log - Home</h1>
+                </header> 
 		<div data-role="content"> 
+                       <div> 
+                        <div class="record-button">
+                          <button  >Tap to record</button>
+                        </div>
+                         <ul class="log" data-role="listview" data-inset="true">
+                           <li>item</li>
+                         </ul>
+                        <a href="#log">View full log</a>
 
-                        <button>Tap to record</button>
-
-                        <a href="#log">View log</a>
+                        
                 </div>
-		<footer data-role="footer">
-			<h1>Copyright (c) 2011 Kurt Harriger. All Rights Reserved.</h1>
+		<footer data-role="footer" data-position="fixed">
+			<h4>Copyright (c) 2011 Kurt Harriger. All Rights Reserved.</h4>
 		</footer> 
 	</section>
 	<section id="log" data-role="page">
