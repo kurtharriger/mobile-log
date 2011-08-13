@@ -30,6 +30,20 @@
             });
 
           });
+          $('div.ui-page').live("swipeleft", function(){
+		var nextpage = $(this).next('div[data-role="page"]');
+		// swipe using id of next page if exists
+		if (nextpage.length > 0) {
+			$.mobile.changePage(nextpage, 'slide');
+		}
+	});
+	$('div.ui-page').live("swiperight", function(){
+		var prevpage = $(this).prev('div[data-role="page"]');
+		// swipe using id of next page if exists
+		if (prevpage.length > 0) {
+			$.mobile.changePage(prevpage, 'slide', true);
+		}
+	});
 
   
           function savePosition(position) {
@@ -40,13 +54,23 @@
           }
           
 
-          $("#home").live('pagebeforecreate', function() {
+          $("#home").live('pagecreate', function() {
              $('.record-button').click(function(event){
           //      navigator.geolocation.getCurrentPosition(savePosition, saveTimeOnly);
                 savePosition();
   
 
              });
+             $(".clear-button").click(function() {
+               localStorage.clear();
+               updateListView();
+             });
+
+          });
+          $("#home").live('pagebeforeshow', function() {
+          
+          
+             updateListView();
           });
           function updateListView() {
              var log = $("ul.log");
@@ -55,6 +79,8 @@
              for(key in localStorage) {
                log.append("<li>"+new Date(key)+"</li>");
              }
+             log.listview('refresh');
+
           }
          
         </script>
@@ -63,7 +89,8 @@
 <body> 
 	<section id="home" data-role="page" data-theme="a">
 		<header data-role="header" data-position="fixed">
-                  <h1>Mobile Log - Home</h1>
+                  <h1>Mobile Log</h1>
+                  <a href="index.html"  class="ui-btn-right clear-button" >Clear</a> 
                 </header> 
 		<div data-role="content"> 
                        <div> 
@@ -71,11 +98,7 @@
                           <button  >Tap to record</button>
                         </div>
                          <ul class="log" data-role="listview" data-inset="true">
-                           <li>item</li>
                          </ul>
-                        <a href="#log">View full log</a>
-
-                        
                 </div>
 		<footer data-role="footer" data-position="fixed">
 			<h4>Copyright (c) 2011 Kurt Harriger. All Rights Reserved.</h4>
