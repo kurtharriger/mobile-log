@@ -1,5 +1,7 @@
 App.views.Viewport = Ext.extend(Ext.Panel, {
     fullscreen: true,
+    html: 'placeholder',
+    layout: 'fit',
     
     initComponent: function() {
 		var addButton, titlebar, list;
@@ -33,8 +35,7 @@ App.views.Viewport = Ext.extend(Ext.Panel, {
         };
 
         Ext.apply(this, {
-            html: 'placeholder',
-            layout: 'fit',
+
             dockedItems: [titlebar, footer],
             items: [list]
         });
