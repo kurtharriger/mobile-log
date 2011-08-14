@@ -10,10 +10,5 @@ App.models.Event = Ext.regModel('Event', {
             name: 'lon',
             type: 'string'
         }
-    ],
-
-    proxy: {
-        type: 'localstorage',
-        id: 'event-proxy'
-    }
+    ]
 });
