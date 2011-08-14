@@ -1,7 +1,9 @@
-App = new Ext.Application({
-    name: "App",
-
-    launch: function() {
-        this.views.viewport = new this.views.Viewport();
-    }
-});
+App = (function() {
+	return new Ext.Application({
+    	name: "App",
+		
+	    launch: function() {
+	        this.views.viewport = new this.views.Viewport();
+	    }
+	});
+})();

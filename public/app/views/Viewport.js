@@ -1,5 +1,12 @@
 App.views.Viewport = (function() {
-	var addButton, titlebar, list;
+	var addButton, titlebar, list, onAddAction;
+
+    onAddAction = function() {
+      Ext.dispatch({
+          controller: 'Events',
+          action: 'newEvent'
+      });
+    };
 
     addButton = {
         itemId: 'addButton',
@@ -7,7 +14,6 @@ App.views.Viewport = (function() {
         iconMask: true,
         ui: 'plain',
         handler: onAddAction,
-        scope: this
     };
 
     titlebar = {
@@ -29,20 +35,12 @@ App.views.Viewport = (function() {
         store: App.stores.events
     };
 
-	function onAddAction() {
-      Ext.dispatch({
-          controller: 'Events',
-          action: 'newEvent'
-      });
-    };	
-	
 	return Ext.extend(Ext.Panel, {
 	    fullscreen: true,
-	    html: 'placeholder',
 	    layout: 'fit',
 	    dockedItems: [titlebar, footer],
 	    items: [list],
 		onAddAction: onAddAction
 	});
-	
+
 })();
