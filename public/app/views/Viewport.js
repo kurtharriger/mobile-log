@@ -22,7 +22,7 @@ App.views.Viewport = Ext.extend(Ext.Panel, {
 
         list = {
             xtype: 'list',
-            itemTpl: '{name}',
+            itemTpl: '{datetime}',
             store: App.stores.events
         };
 
@@ -39,7 +39,7 @@ App.views.Viewport = Ext.extend(Ext.Panel, {
 	 onAddAction: function() {
       Ext.dispatch({
           controller: 'Events',
-          action: 'newForm'
+          action: 'newEvent'
       });
   }
 

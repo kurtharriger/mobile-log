@@ -1,7 +1,7 @@
 App.models.Event = Ext.regModel('Event', {
     fields: [
         {
-            name: 'id',
+            name: 'datetime',
             type: 'date'
         }, {
             name: 'lat',
