@@ -20,6 +20,12 @@ App.views.Viewport = Ext.extend(Ext.Panel, {
             items: [ { xtype: 'spacer' }, addButton ]
         };
 
+        footer = {
+            dock: 'bottom',
+			html: 'Copyright (c) 2011, Kurt Harriger. All Rights Reserved.'
+        };
+
+
         list = {
             xtype: 'list',
             itemTpl: '{datetime}',
@@ -29,7 +35,7 @@ App.views.Viewport = Ext.extend(Ext.Panel, {
         Ext.apply(this, {
             html: 'placeholder',
             layout: 'fit',
-            dockedItems: [titlebar],
+            dockedItems: [titlebar, footer],
             items: [list]
         });
 
