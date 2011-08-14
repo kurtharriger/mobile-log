@@ -6,7 +6,7 @@ App.views.Viewport = (function() {
         iconCls: 'add',
         iconMask: true,
         ui: 'plain',
-        handler: this.onAddAction,
+        handler: onAddAction,
         scope: this
     };
 
@@ -28,7 +28,13 @@ App.views.Viewport = (function() {
         itemTpl: '{datetime}',
         store: App.stores.events
     };
-	
+
+	function onAddAction() {
+      Ext.dispatch({
+          controller: 'Events',
+          action: 'newEvent'
+      });
+    };	
 	
 	return Ext.extend(Ext.Panel, {
 	    fullscreen: true,
@@ -36,14 +42,7 @@ App.views.Viewport = (function() {
 	    layout: 'fit',
 	    dockedItems: [titlebar, footer],
 	    items: [list],
-	
-	
-		 onAddAction: function() {
-	      Ext.dispatch({
-	          controller: 'Events',
-	          action: 'newEvent'
-	      });
-	  }
-
+		onAddAction: onAddAction
 	});
+	
 })();
